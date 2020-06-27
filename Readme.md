@@ -6,17 +6,17 @@ All the work books are saved as jupyter notebooks, with html versions. Although 
 
 ## Scalable Estimation
 
-This is the main workbook ([view](./ScalableEstimation.html)/[download](./ScalableEstimation.ipynb)) which uses data taken from the IBM Quantum Experience (Melbourne device, when it only had 14 qubits), uses that to create a full Pauli distribution and then attempts to reconstruct the distribution from limited sampling of the eigenvalues corrupted by varying levels of noise. It contains the code, analysis and figures that appear in the paper. It does, however, assume a certain level of knowledge which is the point of the workbooks below.
+This is the main workbook which uses data taken from the IBM Quantum Experience (Melbourne device, when it only had 14 qubits), uses that to create a full Pauli distribution and then attempts to reconstruct the distribution from limited sampling of the eigenvalues corrupted by varying levels of noise. It contains the code, analysis and figures that appear in the paper. It does, however, assume a certain level of knowledge which is the point of the workbooks below.
 
 It implicilty uses the algorithm detailed in **Efficient Learning of quantum Noise** [arXiv:1907.13022](https://arxiv.org/abs/1907.13022) , code for which is located at https://github.com/rharper2/Juqst.jl. Python code to run such experiments on the IBM Quantum Experience (using qiskit) can be found on https://github.com/rharper2/query_ibmq.
 
 ## Hadamard Basics and Observations
 
-This workbook ([view](./Hadmard\ Basics\ and\ Observations.html)/[download](./Hadamard\ Basics\ and\ Observations.ipynb)) is a basic (gentle) introduction to the idea of Pauli channels/Pauli erorr probabilities/Pauli eigenvalues and how the Hadamard transform converts between them. It goes through a lot of the notation we use in the paper in detail. Many will be familiar with what is contained in the workbook - but for some it may help provide the key to understanding later workbooks.
+This workbook is a basic (gentle) introduction to the idea of Pauli channels/Pauli erorr probabilities/Pauli eigenvalues and how the Hadamard transform converts between them. It goes through a lot of the notation we use in the paper in detail. Many will be familiar with what is contained in the workbook - but for some it may help provide the key to understanding later workbooks.
 
 ##Scalable Estimation - Basic Concepts
 
-This workbook (view/download) uses what we learnt above (there is some repetition at the beginning) to show exactly how the PEELing decoder works in a toy 2 qubit system. It sets up a fake Pauli distribution, assumes we can sample without noise and shows how by sampling the eigenvalues we can operate the decoder to calcluate the global Pauli error probabilities. Obviously the real algorithm, which has to deal with noise, is slightly more complicated and clearly a two qubit system is almost tediously trivial - but the idea is to use a system small enough to easily manipulate to introduce the major concepts behind the algorithm.
+This workbook  uses what we learnt above (there is some repetition at the beginning) to show exactly how the PEELing decoder works in a toy 2 qubit system. It sets up a fake Pauli distribution, assumes we can sample without noise and shows how by sampling the eigenvalues we can operate the decoder to calcluate the global Pauli error probabilities. Obviously the real algorithm, which has to deal with noise, is slightly more complicated and clearly a two qubit system is almost tediously trivial - but the idea is to use a system small enough to easily manipulate to introduce the major concepts behind the algorithm.
 
 ## Scalable Estimation - Experimental Basics
 
