@@ -14,7 +14,7 @@ It implicilty uses the algorithm detailed in **Efficient Learning of quantum Noi
 
 This workbook is a basic (gentle) introduction to the idea of Pauli channels/Pauli erorr probabilities/Pauli eigenvalues and how the Hadamard transform converts between them. It goes through a lot of the notation we use in the paper in detail. Many will be familiar with what is contained in the workbook - but for some it may help provide the key to understanding later workbooks.
 
-##Scalable Estimation - Basic Concepts
+## Scalable Estimation - Basic Concepts
 
 This workbook  uses what we learnt above (there is some repetition at the beginning) to show exactly how the PEELing decoder works in a toy 2 qubit system. It sets up a fake Pauli distribution, assumes we can sample without noise and shows how by sampling the eigenvalues we can operate the decoder to calcluate the global Pauli error probabilities. Obviously the real algorithm, which has to deal with noise, is slightly more complicated and clearly a two qubit system is almost tediously trivial - but the idea is to use a system small enough to easily manipulate to introduce the major concepts behind the algorithm.
 
