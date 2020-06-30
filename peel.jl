@@ -10,6 +10,7 @@ import Base.show
 # Defines a helper function in jupyter notebooks its /oplus<tab>
 ⊕ = (x,y)->mod.(x+y,2)
 
+export peelBack,checkAndExtractSingleton,constructTheKeyIndexMUB,getIndexOf
 export generateFromPVecSamples4N,twoPattern,fourPattern,simplexUp,generatePauliFromClifford
 export getχ,bitArrayToNumber
 
@@ -33,7 +34,7 @@ end
 fourPattern(p)
 
 ## Arguments
-     ```p Array{Array{Array{Int64,1},1},1}``` represents a series of commuting two qubit paulis.
+    p::Array{Array{Array{Int64,1},1},1} represents a series of commuting two qubit paulis.
 
 Given a MUB works out what binary string will go in what bin
 This takes a 4 bit (two Pauli) set of commuting Paulis, eg.
@@ -41,7 +42,7 @@ This takes a 4 bit (two Pauli) set of commuting Paulis, eg.
 ```
 1-element Array{Array{Array{Int64,1},1},1}:
  [[0, 0, 0, 0], [1, 0, 1, 1], [0, 1, 1, 0], [1, 1, 0, 1]]
- ```
+```
 
 And then returns the Array that shows what bin each of the 16 two qubit Paulis go into e.g.
 
@@ -51,7 +52,9 @@ And then returns the Array that shows what bin each of the 16 two qubit Paulis g
 
 Which tells us e.g. that "1001" goes into bin 0 and "1101" goes into bin 2.
 
-Returns an Array, containing a single array of 4 vectors each of size 4 --- splitting all 16 Paulis (rep as binary strings) into 4 bins.
+## Returns 
+    an Array, containing a single array of 4 vectors each of size 4 --- splitting all 16 Paulis (rep as binary strings) into 4 bins.
+
 If you want to think of this as a hashing function, it shows how to take 4 bits -> 2 bits using the supplied pattern.
 """
 function fourPattern(p)
@@ -68,7 +71,7 @@ end
 twoPattern(p)
 
 ### Arguments
-     ```p Array{Array{Int64,1},1}``` represents a series of commuting two qubit paulis.
+     p Array{Array{Int64,1},1} represents a series of commuting two qubit paulis.
 
 Given a MUB works out what binary string will go in what bin
 This takes a 2 bit (one Pauli) set of commuting Paulis, eg.
@@ -76,7 +79,7 @@ This takes a 2 bit (one Pauli) set of commuting Paulis, eg.
 ```
 1-element Array{Array{Array{Int64,1},1},1}:
  [0, 0], [1, 1]
- ```
+```
 
 And then returns a two element Array that shows what bin each of the 16 two qubit Paulis go into e.g.
 
@@ -87,7 +90,9 @@ And then returns a two element Array that shows what bin each of the 16 two qubi
 
 Which tells us e.g. that "11" goes into bin 0 and "01" goes into bin 2.
 
-Returns an Array, containing an array of 2 vectors each of size 2 --- splitting all 4 Paulis (rep as binary strings) into 2 bins.
+## Returns 
+    an Array, containing an array of 2 vectors each of size 2 --- splitting all 4 Paulis (rep as binary strings) into 2 bins.
+
 If you want to think of this as a hashing function, it shows how to take 2 bits -> 1 bits using the supplied pattern.
 """
 function twoPattern(ps)
@@ -99,9 +104,9 @@ end
 """ 
 getIndexOf(hadamardMap,no,dictMap=Dict())
 ### Arguments
-	```hadamardMap: An array``` of hashing bins (see later)
-	```no: Integer ``` the index of the Pauli we want to know which bin it gotes into 
-	```dictMap: Dictionary``` optional mapping eg qubit 2->qubit 4.
+	hadamardMap: An array of hashing bins (see later)
+	no: Integer  the index of the Pauli we want to know which bin it gotes into 
+	dictMap: Dictionary optional mapping eg qubit 2->qubit 4.
 
  Given a map (constructed from fourPattern and twoPattern), this will
  split the qubits up into the pairs/singles identified by the map and
@@ -121,7 +126,7 @@ The hadamard Map for a six qubit system might look like this
  [["0000", "0110", "1101", "1011"], ["1100", "1010", "0001", "0111"], ["1000", "1110", "0101", "0011"], ["0100", "0010", "1001", "1111"]]
  [["0000", "1110", "1001", "0111"], ["1100", "0010", "0101", "1011"], ["0100", "1010", "1101", "0011"], ["1000", "0110", "0001", "1111"]]
  [["00", "01"], ["10", "11"]]
- ```
+```
 
  Where we have used twoPattern for qubits 0 and 5 and fourPattern for qubits 1&2 and 3&4
 
@@ -189,9 +194,9 @@ end
 constructTheKeyIndexMUB(indx,listOfPs,map=[])
 
 ## Arguments
-    ```indx``` The index of a Pauli, we want to ascertain which bins that Pauli was hashed into.
-	```listOfPs``` The used to sample/bin the Paulis
-	```map``` A map of qubit substitutions e.g mapping qubit 2 to 14
+    indx The index of a Pauli, we want to ascertain which bins that Pauli was hashed into.
+	listOfPs The used to sample/bin the Paulis
+	map A map of qubit substitutions e.g mapping qubit 2 to 14
 
 Given a Paulis to test, returns the index into all the bins that Paulis is hashed into 
 (it is assumed we have a number a sub-sampling groups).
@@ -217,9 +222,9 @@ end
 generateFromPVecSamples4N(pvec,d=[],dictMapping)
 
 ## Arguments
-	```pvec``` The list of Paulis which are used in our experiment. Given as an array of stabilisers (see example)
-	```d``` The offset, this is the binary string 'hashed' into the Paulis given by pvec.
-	```map``` an optional dictionary mapping qubits to other qubits.
+	pvec The list of Paulis which are used in our experiment. Given as an array of stabilisers (see example)
+	d The offset, this is the binary string 'hashed' into the Paulis given by pvec.
+	map an optional dictionary mapping qubits to other qubits.
 
 Generates the fidelities we are going to sample from for a given offset 
 vector (d).
@@ -230,16 +235,17 @@ By way of example, if we supplied as a pvec
 [[0, 0, 0, 0], [0, 1, 1, 1], [1, 0, 0, 1], [1, 1, 1, 0]]
 
 ```
+
  Then we would get 0,7,9 and 14.
 
  If we also suplied a d, [1 0 0 0], then we get 8, 15, 1 6
 
  A pvec as 
 
- ```
+```
  [[0, 0, 0, 0], [0, 1, 1, 1], [1, 0, 0, 1], [1, 1, 1, 0]]
  [[0, 0, 0, 0], [0, 1, 1, 1], [1, 0, 0, 1], [1, 1, 1, 0]]
- ```
+```
 
  Would give us 0, 7, 9, 14, 112, 119, 121, 126, 144, 151, 153, 158, 224, 231, 233, 238
 
@@ -287,9 +293,9 @@ end
 closeToZero(bin,BITS,cutoff=1e-15)
 
 ## Arguments
-	```bin``` An array of values in the bin and its various offsets. 
-	```bits``` The number of bits (typically 2*#ofqubits)
-	```cutoff``` the entropy in the bin, below which we will assume it is zero.
+	bin An array of values in the bin and its various offsets. 
+	bits The number of bits (typically 2*#ofqubits)
+	cutoff the entropy in the bin, below which we will assume it is zero.
 
 Checks if the values in the bin have an absolute value close to zero, where we sum the 
 squares of the entries in the bin, divide by (BITS+1) and compare to the cutoff.
@@ -312,9 +318,9 @@ end
 checkAndExtractSingleton(indexes,BITS;cutoff=0.000002)
 
 ## Arguments
-	```indexes``` A list of arrays, being the bins and their offsets.
-	```Bits``` the number of bits (being 2*qubits)
-	```cutoff``` what the entropy has to be less than
+	indexes: A list of arrays, being the bins and their offsets.
+	Bits: the number of bits (being 2*qubits)
+	cutoff: what the entropy has to be less than
 Checks the 'entropy' in the bin (ie sum of the square of the fluctations around the mean of the abs value)/BITS
 If it is less than the cutoff admits it as a singleton.
 Extracts the Pauli (using majority vote if given multiple samples)
@@ -365,27 +371,27 @@ end
 peelBack(listOfX,listOfPs,singletonBits,singletonValue,found,ds,mappings)
 
 ## Arguments
-	```listOfX``` - the bins and their offsets <- this gets modified
-	```listOfPs``` - the stabiliser groups used to create the bins (see generateFromPVecSamples4N)
-	```singletonBits``` - the bit index of the Pauli to peel back
-	```singletonVlaue``` - the value of the Pauli to peel back
-	```found``` - a Dict of Pauli bitstrings that have been found and their value
-	```ds``` - the offsets used.
-	```mappings``` - an optional mapping of qubit->qubit.
+	listOfX - the bins and their offsets <- this gets modified
+	listOfPs - the stabiliser groups used to create the bins (see generateFromPVecSamples4N)
+	singletonBits - the bit index of the Pauli to peel back
+	singletonVlaue - the value of the Pauli to peel back
+	found - a Dict of Pauli bitstrings that have been found and their value
+	ds - the offsets used.
+	mappings - an optional mapping of qubit->qubit.
 
 Peel back algorithm tailored for noise version.
 
 Check if we have already found the supplied Pauli (is it in found?)
-    - If so check if the value we think we have found is greater than the previous sample
-       - If not, then just return - we had already found it, and the noise has just confused us!
-       - If yes, then the one we found was probably wrong and a result of the noise, just update the value.
+-   If so check if the value we think we have found is greater than the previous sample
+    -   If not, then just return - we had already found it, and the noise has just confused us!
+    -   If yes, then the one we found was probably wrong and a result of the noise, just update the value.
 
 *[Query this logic, it seems to work but perhaps, we may want to update the bins with the difference.]*
 
-    - Otherwise (i.e. we hadn't found it before.)
-    	- Get the index of that Pauli into each of the other bin sets
-		- And add or subtract (depending on relevant offset) the supplied value of the Pauli
-		- Update found by adding in this Pauli and the value.
+- Otherwise (i.e. we hadn't found it before.)
+    -    Get the index of that Pauli into each of the other bin sets
+    -    And add or subtract (depending on relevant offset) the supplied value of the Pauli
+    -    Update found by adding in this Pauli and the value.
 """
 function peelBack(listOfX,listOfPs,singletonBits,singletonValue,found,ds,mappings)
     if (singletonBits in keys(found))
@@ -429,8 +435,8 @@ end
 probabilityLabels(index; qubits=2)
 
 ## Arguments
-    ```index (Int)``` The index (0 index) for which we want the label.
-    ```qubits (Int)``` The number of qubits in the label, defaults to 2
+    index (Int) The index (0 index) for which we want the label.
+    qubits (Int) The number of qubits in the label, defaults to 2
 Because we use the Walsh-Hadmard transform based on bits (i.e. the standard 'natural' transform rather than a Pauli-commuting transform)
 The transform changes the way we need to label our qubits. In the probability regime we have the following bit labelling:
 ```
@@ -456,8 +462,8 @@ end
 fidelityLabels(index; qubits=2)
 
 ## Arguments
-    ```index (Int)``` The index (0 index) for which we want the label.
-    ```qubits (Int)``` The number of qubits in the label, defaults to 2
+    index (Int) The index (0 index) for which we want the label.
+    qubits (Int) The number of qubits in the label, defaults to 2
 Because we use the Walsh-Hadmard transform based on bits (i.e. the standard 'natural' transform rather than a Pauli-commuting transform)
 The transform changes the way we need to label our qubits. In the probability regime we have the following bit labelling:
 ```
@@ -600,16 +606,16 @@ end
 generatePauliFromClifford(n)
 
 ## Arguments
-    `cliffordPs`: Array{Float64,1}
+    cliffordPs: Array{Float64,1}
 
 	
 Splits the "Clifford average" which we recover from the protocol in Efficient Learning of quantum Noise arXiv:1907.13022. into 
 a fake Pauli distribution, that would average to the same Clifford average. We are going to use this to test the algorithm.
 
-We do this by realising that each member of our 2^n distribution was in fact an average of certain Paulis. We work out how many
-Paulis went into the distribution (```splitUp(n)```) and then project the number onto an appropriate simplex (```simpleUp```).
+We do this by realising that each member of our ``2^n`` distribution was in fact an average of certain Paulis. We work out how many
+Paulis went into the distribution (```splitUp(n)```) and then project the number onto an appropriate simplex (```simplexUp```).
 
-This allows us to recreate a 4^n distribution that would average down to the supplied distribution. Of course there is a random 
+This allows us to recreate a ``4^n`` distribution that would average down to the supplied distribution. Of course there is a random 
 element with the projection up stage, but it is *experimentally* inspired if the original averaged protocol came from an experiment.
 
 ## Returns 
