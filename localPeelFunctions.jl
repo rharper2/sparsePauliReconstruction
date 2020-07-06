@@ -38,8 +38,8 @@ Then this would generage the needed data for two expeiments, each for 6 qubits.
 With three qubits, we might call it thus:
 ```
 (experiments,paulisAll,ds) = generateSensibleSubsamples([(2,1),(1,2)])
-print("$experiments\n")
-print("$paulisAll\n")
+print("\$experiments\\n")
+print("\$paulisAll\\n")
 ```
 
 ```
