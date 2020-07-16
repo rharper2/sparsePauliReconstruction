@@ -1,6 +1,10 @@
 This repository serves to hold the code for the paper **Fast estimation of sparse quantum noise** by *Harper, Yu and Flammia* (in production).
 
-It does, however, aim to do far more than that. It provides walkthoughs (in the way of Julia workbooks) for many of the core concepts used in the paper in the hope that his might be of relevance and interest to those exploring the world of characterizing the noise in quantum devices and verifying the operation of such devices.
+Full documentation can be found at [https://rharper2.github.io/sparsePauliReconstruction/docs/build/index.html](https://rharper2.github.io/sparsePauliReconstruction/docs/build/index.html).
+
+## Summary
+
+This series of files is not just the code used in the paper, but it also provides walkthoughs (in the way of Julia workbooks) for many of the core concepts used in the paper in the hope that his might be of relevance and interest to those exploring the world of characterizing the noise in quantum devices and verifying the operation of such devices.
 
 All the work books are saved as jupyter notebooks, with html versions. Although github does a great job of rendering IPython notebooks, some of the software used prints arrays in latex form (so they look good in the workbook) and github is struggling with that (it shows the raw latex). So for online browsing I would recommend using the html version. Better still download the repo, fire up your own jupyter notebook server and view the workbooks (interactively).
 
