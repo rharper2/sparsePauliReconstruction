@@ -1,0 +1,11 @@
+
+# Example workbooks
+
+Below are links to rendered versions of the example workbooks contained in the repository (if you want to run them clone the repo!):
+
+
+- **ScalableEstimation.ipynb**. This is the main workbook that reproduces all the diagrams and charts in the paper. It assumes some knowledge of the algorithm and uses experimental data as the basis for the distribution it recreates. [Web friendly version](renderedWorkbooks/ScalableEstimation.html).
+- **Hadamard Basics and Observations.ipynb**. A work book setting out some of the basic concepts behind the Walsh-Hadamard transform, the global probability vector and the SuperOperator (Pauli basis) Eigenvalues and measurements (observations). If you are a bit unclear on these terms, this might be a good place to start. [Web friendly version](renderedWorkbooks/Hadamard Basics and Observations.html).
+- **Scalable Estimation - Basic Concepts.ipynb**. This is a small qubit, no noise work through of the protocol. If you are a bit unclear on some of the more basic concepts, this aims to cover those. [Web friendly version](renderedWorkbooks/Scalable Estimation - Basic Concepts.html).
+- **Scalable Estimation - Experimental Basics.ipynb**. This shows how to create the circuits needed to get the eigenvalues to run the protocol. Because of the limitations of the simulaton it is only for 6 qubits, which are too few to justify the protocol. The workbook is long and contains a wealth of data output - if you are trying to write your own version of the protocol this will be a useful tool to debug. If you just want to learn how to run appropriate circuits, the qiskit workbooks (below) are probably a better bet. [Web friendly version](renderedWorkbooks/Scalable Estimation - Experimental Basics.html).
+- **Scalable Estimation - Experimental Qiskit- Just 3 qubits.ipynb**. This shows how to create, run and the circuits and the *peel* the results using qiskit and the AER simulator. It is only 3 qubits, so **not** the size this is aimed at, but the simulation runs quite fast! It may be helpful to see how to do it on your bigger system. [Web friendly version](renderedWorkbooks/Scalable Estimation - Experimental Qiskit- Just 3 qubits.html).

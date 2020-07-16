@@ -32,7 +32,7 @@ getIndexOf
 constructTheKeyIndexMUB
 ```
 
-## Manimpuaiton of probability vectors
+## Manipulation of probability vectors
 
 ```@docs
 simplexUp
