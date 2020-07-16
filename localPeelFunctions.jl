@@ -38,8 +38,8 @@ Then this would generage the needed data for two expeiments, each for 6 qubits.
 With three qubits, we might call it thus:
 ```
 (experiments,paulisAll,ds) = generateSensibleSubsamples([(2,1),(1,2)])
-print("$experiments\n")
-print("$paulisAll\n")
+print("\$experiments\\n")
+print("\$paulisAll\\n")
 ```
 
 ```
@@ -371,7 +371,7 @@ genPTwirl(circuit,len,qubit_id)
 
 generates a Pauli twirl on the circuit consisting of len gates + inversion gate. On qubit_id
 
-##Arguments
+## Arguments
 	circuit - the qiskit circuit to alter
 	len - an integer representing the number of gates in the twirl
 	qubit_id - an integer representing the qubit. Index from 1 (Julia), the qubit register is retrieved from circuit and is not needed.
@@ -402,7 +402,7 @@ end
 """
 getCircuit(experiment,noOfGates)
 
-##Arguments
+## Arguments
 	experiment: a list of tuples (such as that obtained from generateSensibleSubsamples)
 	noOfGates: the number of Paulis we want in the middle (to twirl)
 
@@ -412,7 +412,7 @@ a Pauli Twirl in the middle). The circuits are self-inverting.
 
 Appropriate barriers are inserted.
 
-##Example
+## Example
 ```
 (experiments,paulisAll,ds) = generateSensibleSubsamples([(2,1),(1,2)]) # Get some experiments
 circuit = getCircuit(experiments[1],12) # twelve pauli twirl circuit.
