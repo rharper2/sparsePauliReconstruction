@@ -1,4 +1,6 @@
-This repository serves to hold the code for the paper **Fast estimation of sparse quantum noise** by *Harper, Yu and Flammia* (in production).
+## Introduction
+
+This repository serves to hold the code for the paper **Fast estimation of sparse quantum noise** by *Harper, Yu and Flammia* [ArXiv:2007.07901](https://arxiv.org/abs/2007.07901).
 
 Full documentation can be found at [https://rharper2.github.io/sparsePauliReconstruction/docs/build/index.html](https://rharper2.github.io/sparsePauliReconstruction/docs/build/index.html).
 
