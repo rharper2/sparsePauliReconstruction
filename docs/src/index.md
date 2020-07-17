@@ -9,7 +9,7 @@ Depth = 2
 
 # Introduction 
 
-This is the documentation of the code used to implement the algorithm discussed in the paper **Fast estimation of sparse quantum noise** by *Harper, Yu and Flammia* (in production).
+This is the documentation of the code used to implement the algorithm discussed in the paper **Fast estimation of sparse quantum noise** by *Harper, Yu and Flammia* [ArXiv:2007.07901](https://arxiv.org/abs/2007.07901).
 
 There are a number of IJulia workbooks that accompany this code that detail the use of the software and the implementation of the algorithm. They are detailed in the section [Example workbooks](@ref).
 
